@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Appointly — Your Time, Your Choice | Modern Appointment Booking</title>
+  <meta name="description" content="Appointly is a modern, fast, and intuitive appointment booking system. Schedule consultations, meetings, and check-ups with zero hassle.">
+  
+  <!-- Google Fonts: Inter & DM Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2224%22 fill=%22%236366f1%22/><text y=%2270%22 font-size=%2265%22 x=%2222%22 fill=%22white%22>📅</text></svg>">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Toast Notification Container -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- Header / Navigation Bar -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="#hero" class="brand-logo" aria-label="Appointly Home">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="4" ry="4"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <circle cx="12" cy="15" r="2" fill="currentColor"></circle>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">Appointly</span>
+          <span class="brand-tagline">Your Time, Your Choice.</span>
+        </div>
+      </a>
+
+      <nav class="nav-links" id="mainNav">
+        <a href="#hero" class="nav-link active">Home</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#bookingSection" class="nav-link">Book Now</a>
+        <a href="#appointmentsSection" class="nav-link my-appointments-link">
+          My Appointments
+          <span id="navBookingBadge" class="nav-badge">0</span>
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#bookingSection" class="btn btn-primary btn-sm nav-cta">Book Appointment</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="pill-dot"></span>
+          <span class="pill-text">Smart Real-Time Scheduling System</span>
+        </div>
+        <h1 class="hero-title">
+          Make time for <span class="gradient-text">what matters.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Say goodbye to back-and-forth emails. Select your service, pick an available slot with instant duplicate prevention, and manage all your bookings with total peace of mind.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#bookingSection" class="btn btn-primary btn-lg shadow-glow">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14M5 12h14"></path>
+            </svg>
+            Schedule Appointment
+          </a>
+          <a href="#appointmentsSection" class="btn btn-secondary btn-lg">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            View Bookings
+          </a>
+        </div>
+
+        <!-- Quick Trust Indicators -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-icon">⚡</span>
+            <div>
+              <div class="stat-number">Instant</div>
+              <div class="stat-label">Slot Confirmation</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">🛡️</span>
+            <div>
+              <div class="stat-number">Zero Conflict</div>
+              <div class="stat-label">Double-Booking Guard</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <span class="stat-icon">📱</span>
+            <div>
+              <div class="stat-number">100%</div>
+              <div class="stat-label">Mobile Friendly</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card Preview -->
+      <div class="hero-visual">
+        <div class="floating-preview-card">
+          <div class="preview-header">
+            <div class="preview-dot dot-red"></div>
+            <div class="preview-dot dot-yellow"></div>
+            <div class="preview-dot dot-green"></div>
+            <span class="preview-title">Live Slot Availability</span>
+          </div>
+          <div class="preview-body">
+            <div class="preview-calendar-row">
+              <div class="mini-calendar-chip active">
+                <span class="chip-day">Today</span>
+                <span class="chip-status">Active</span>
+              </div>
+              <div class="mini-calendar-chip">
+                <span class="chip-day">Tomorrow</span>
+                <span class="chip-status">Available</span>
+              </div>
+              <div class="mini-calendar-chip">
+                <span class="chip-day">+2 Days</span>
+                <span class="chip-status">Available</span>
+              </div>
+            </div>
+            <div class="preview-slots-grid">
+              <span class="slot-chip booked">09:00 AM (Booked)</span>
+              <span class="slot-chip selected">10:00 AM (Selected)</span>
+              <span class="slot-chip available">11:00 AM</span>
+              <span class="slot-chip available">01:00 PM</span>
+              <span class="slot-chip booked">02:00 PM (Booked)</span>
+              <span class="slot-chip available">03:00 PM</span>
+            </div>
+            <div class="preview-badge-card">
+              <div class="badge-icon">✓</div>
+              <div class="badge-text">
+                <strong>Protected by Appointly Guard</strong>
+                <p>Duplicate bookings strictly prohibited</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Selection Section -->
+  <section id="services" class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Choose What You Need</span>
+        <h2 class="section-title">Our Available Services</h2>
+        <p class="section-description">
+          Click any service card below to automatically pre-select it in the booking form.
+        </p>
+      </div>
+
+      <div class="services-grid" id="servicesGrid">
+        <!-- Service Card 1 -->
+        <div class="service-card" data-service="General Consultation">
+          <div class="service-icon-wrapper general">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <div class="service-details">
+            <div class="service-badge">45 Min Session</div>
+            <h3 class="service-name">General Consultation</h3>
+            <p class="service-desc">Professional advice and initial assessment for any personal, business, or general inquiry.</p>
+          </div>
+          <div class="service-card-action">
+            <span class="select-hint">Click to Choose</span>
+            <span class="check-icon">✓</span>
+          </div>
+        </div>
+
+        <!-- Service Card 2 -->
+        <div class="service-card" data-service="Dental Check-up">
+          <div class="service-icon-wrapper dental">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2C8.5 2 6 4.5 6 7.5c0 2.2 1 4 1.5 6.5.5 2.5 1 6 2.5 6s2-3 2-5c0 2 0.5 5 2 5s2-3.5 2.5-6c.5-2.5 1.5-4.3 1.5-6.5C18 4.5 15.5 2 12 2z"></path>
+            </svg>
+          </div>
+          <div class="service-details">
+            <div class="service-badge">30 Min Session</div>
+            <h3 class="service-name">Dental Check-up</h3>
+            <p class="service-desc">Comprehensive oral examination, teeth cleaning consultation, and hygiene care.</p>
+          </div>
+          <div class="service-card-action">
+            <span class="select-hint">Click to Choose</span>
+            <span class="check-icon">✓</span>
+          </div>
+        </div>
+
+        <!-- Service Card 3 -->
+        <div class="service-card" data-service="Health Consultation">
+          <div class="service-icon-wrapper health">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+          </div>
+          <div class="service-details">
+            <div class="service-badge">60 Min Session</div>
+            <h3 class="service-name">Health Consultation</h3>
+            <p class="service-desc">One-on-one wellness evaluation, routine health queries, and clinical lifestyle guidance.</p>
+          </div>
+          <div class="service-card-action">
+            <span class="select-hint">Click to Choose</span>
+            <span class="check-icon">✓</span>
+          </div>
+        </div>
+
+        <!-- Service Card 4 -->
+        <div class="service-card" data-service="Personal Meeting">
+          <div class="service-icon-wrapper personal">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="7" r="4"></circle>
+              <path d="M6 21v-2a6 6 0 0 1 12 0v2"></path>
+            </svg>
+          </div>
+          <div class="service-details">
+            <div class="service-badge">45 Min Session</div>
+            <h3 class="service-name">Personal Meeting</h3>
+            <p class="service-desc">Private meeting with advisors, mentors, team leads, or academic project coordinators.</p>
+          </div>
+          <div class="service-card-action">
+            <span class="select-hint">Click to Choose</span>
+            <span class="check-icon">✓</span>
+          </div>
+        </div>
+
+        <!-- Service Card 5 -->
+        <div class="service-card" data-service="Other">
+          <div class="service-icon-wrapper other">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+          </div>
+          <div class="service-details">
+            <div class="service-badge">Custom Duration</div>
+            <h3 class="service-name">Other</h3>
+            <p class="service-desc">Custom appointment requirement. Specify your agenda in the additional notes field.</p>
+          </div>
+          <div class="service-card-action">
+            <span class="select-hint">Click to Choose</span>
+            <span class="check-icon">✓</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment Booking Section -->
+  <section id="bookingSection" class="booking-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Fast & Secure Booking</span>
+        <h2 class="section-title">Schedule Your Appointment</h2>
+        <p class="section-description">Fill out your details, choose an available date, and pick your preferred time slot.</p>
+      </div>
+
+      <div class="booking-layout">
+        <!-- Left Column: The Main Booking Form -->
+        <div class="booking-form-wrapper">
+          <form id="appointmentForm" class="booking-form" novalidate>
+            
+            <!-- Form Card 1: Personal Details -->
+            <div class="form-card">
+              <div class="form-card-header">
+                <div class="step-badge">1</div>
+                <div>
+                  <h3 class="form-card-title">Personal Information</h3>
+                  <p class="form-card-subtitle">We will send your booking confirmation to this email</p>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <!-- Full Name -->
+                <div class="form-group full-width">
+                  <label for="fullName" class="form-label">
+                    Full Name <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <input 
+                      type="text" 
+                      id="fullName" 
+                      name="fullName" 
+                      class="form-control" 
+                      placeholder="e.g. Alex Morgan"
+                      autocomplete="name"
+                      required
+                    >
+                  </div>
+                  <div class="field-error" id="fullNameError" aria-live="polite"></div>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group">
+                  <label for="email" class="form-label">
+                    Email Address <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                      <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <input 
+                      type="email" 
+                      id="email" 
+                      name="email" 
+                      class="form-control" 
+                      placeholder="alex@example.com"
+                      autocomplete="email"
+                      required
+                    >
+                  </div>
+                  <div class="field-error" id="emailError" aria-live="polite"></div>
+                </div>
+
+                <!-- Phone Number -->
+                <div class="form-group">
+                  <label for="phone" class="form-label">
+                    Phone Number <span class="required-star">*</span>
+                    <span class="label-hint">(10 digits)</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                    </svg>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone" 
+                      class="form-control" 
+                      placeholder="9876543210"
+                      maxlength="10"
+                      autocomplete="tel"
+                      required
+                    >
+                  </div>
+                  <div class="field-error" id="phoneError" aria-live="polite"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Card 2: Service & Date Selection -->
+            <div class="form-card">
+              <div class="form-card-header">
+                <div class="step-badge">2</div>
+                <div>
+                  <h3 class="form-card-title">Service & Date</h3>
+                  <p class="form-card-subtitle">Choose what you need and pick your preferred calendar day</p>
+                </div>
+              </div>
+
+              <div class="form-grid">
+                <!-- Service Type Dropdown -->
+                <div class="form-group">
+                  <label for="serviceType" class="form-label">
+                    Service Type <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                    </svg>
+                    <select id="serviceType" name="serviceType" class="form-control" required>
+                      <option value="" disabled selected>Select a Service</option>
+                      <option value="General Consultation">General Consultation</option>
+                      <option value="Dental Check-up">Dental Check-up</option>
+                      <option value="Health Consultation">Health Consultation</option>
+                      <option value="Personal Meeting">Personal Meeting</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="field-error" id="serviceTypeError" aria-live="polite"></div>
+                </div>
+
+                <!-- Appointment Date -->
+                <div class="form-group">
+                  <label for="appointmentDate" class="form-label">
+                    Appointment Date <span class="required-star">*</span>
+                  </label>
+                  <div class="input-with-icon">
+                    <svg class="input-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                      <line x1="16" y1="2" x2="16" y2="6"></line>
+                      <line x1="8" y1="2" x2="8" y2="6"></line>
+                      <line x1="3" y1="10" x2="21" y2="10"></line>
+                    </svg>
+                    <input 
+                      type="date" 
+                      id="appointmentDate" 
+                      name="appointmentDate" 
+                      class="form-control" 
+                      required
+                    >
+                  </div>
+                  <div class="field-error" id="appointmentDateError" aria-live="polite"></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Card 3: Time Slot Selector -->
+            <div class="form-card">
+              <div class="form-card-header">
+                <div class="step-badge">3</div>
+                <div>
+                  <h3 class="form-card-title">Select Available Time Slot <span class="required-star">*</span></h3>
+                  <p class="form-card-subtitle">Slots update dynamically based on the chosen date and existing reservations</p>
+                </div>
+              </div>
+
+              <!-- Time Slot Area -->
+              <div id="slotSelectionSection" class="slot-selection-container">
+                <!-- Hint when date is not selected yet -->
+                <div id="noDateSelectedPrompt" class="prompt-box info-box">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                  </svg>
+                  <span>Please select an <strong>Appointment Date</strong> above to view available time slots.</span>
+                </div>
+
+                <!-- Dynamic Slots Grid Container (hidden until date selected) -->
+                <div id="slotsWrapper" class="slots-wrapper hidden">
+                  <div class="slots-meta-row">
+                    <span class="slots-date-label" id="slotsActiveDateText">Slots for Date</span>
+                    <div class="slots-legend">
+                      <span class="legend-item"><span class="legend-dot available"></span> Available</span>
+                      <span class="legend-item"><span class="legend-dot booked"></span> Booked</span>
+                      <span class="legend-item"><span class="legend-dot selected"></span> Selected</span>
+                    </div>
+                  </div>
+
+                  <div id="timeSlotsGrid" class="time-slots-grid" role="radiogroup" aria-label="Available Time Slots">
+                    <!-- Populated dynamically by script.js -->
+                  </div>
+
+                  <!-- Fallback when all slots are taken -->
+                  <div id="noSlotsAvailableMsg" class="no-slots-alert hidden">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <line x1="15" y1="9" x2="9" y2="15"></line>
+                      <line x1="9" y1="9" x2="15" y2="15"></line>
+                    </svg>
+                    <span>No time slots are available on this date. Please choose a different calendar day.</span>
+                  </div>
+                </div>
+
+                <!-- Hidden Input to store chosen slot for submission -->
+                <input type="hidden" id="selectedTimeSlot" name="selectedTimeSlot" value="">
+                <div class="field-error" id="timeSlotError" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <!-- Form Card 4: Additional Notes -->
+            <div class="form-card">
+              <div class="form-card-header">
+                <div class="step-badge">4</div>
+                <div>
+                  <h3 class="form-card-title">Additional Notes <span class="label-hint">(Optional)</span></h3>
+                  <p class="form-card-subtitle">Add any specific requests, questions, or context</p>
+                </div>
+              </div>
+
+              <div class="form-group full-width">
+                <textarea 
+                  id="additionalNotes" 
+                  name="additionalNotes" 
+                  class="form-control textarea-control" 
+                  rows="3" 
+                  placeholder="Share any special requirements or notes for the session..."
+                  maxlength="300"
+                ></textarea>
+                <div class="char-count-row">
+                  <span class="char-hint">Maximum 300 characters</span>
+                  <span id="charCount" class="char-count">0 / 300</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Global Alert Message Area -->
+            <div id="formAlert" class="form-alert hidden" role="alert" aria-live="assertive"></div>
+
+            <!-- Submission Actions -->
+            <div class="form-actions">
+              <button type="submit" id="submitBtn" class="btn btn-primary btn-xl submit-btn">
+                <span class="btn-text">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                  Confirm Appointment
+                </span>
+                <span class="btn-spinner hidden" aria-hidden="true"></span>
+              </button>
+              <button type="button" id="resetFormBtn" class="btn btn-outline btn-md">Clear Form</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Right Column: Live Booking Summary Preview -->
+        <aside class="booking-summary-sidebar">
+          <div class="summary-card sticky-card">
+            <div class="summary-header">
+              <div class="summary-icon">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="16" y1="13" x2="8" y2="13"></line>
+                  <line x1="16" y1="17" x2="8" y2="17"></line>
+                  <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h3 class="summary-title">Booking Summary</h3>
+                <span class="summary-status-pill preview">Live Preview</span>
+              </div>
+            </div>
+
+            <div class="summary-content">
+              <div class="summary-row">
+                <span class="summary-label">Service</span>
+                <span class="summary-value" id="summaryService">— Not Selected</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Date</span>
+                <span class="summary-value" id="summaryDate">— Not Selected</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Time Slot</span>
+                <span class="summary-value highlight" id="summaryTime">— Not Selected</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Customer Name</span>
+                <span class="summary-value" id="summaryName">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Email</span>
+                <span class="summary-value" id="summaryEmail">—</span>
+              </div>
+              <div class="summary-row">
+                <span class="summary-label">Phone</span>
+                <span class="summary-value" id="summaryPhone">—</span>
+              </div>
+            </div>
+
+            <div class="summary-guarantee">
+              <div class="guarantee-icon">🔒</div>
+              <div class="guarantee-text">
+                <strong>Anti-Collision Check Active</strong>
+                <p>Duplicate bookings on the same date and time slot are strictly rejected.</p>
+              </div>
+            </div>
+
+            <div class="summary-footer">
+              <small class="text-muted">Saved locally in your browser storage</small>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- My Appointments Section -->
+  <section id="appointmentsSection" class="appointments-section">
+    <div class="container">
+      <div class="appointments-header-row">
+        <div>
+          <span class="section-tag">Manage Schedule</span>
+          <h2 class="section-title">
+            My Appointments
+            <span id="appointmentCountBadge" class="count-pill">0</span>
+          </h2>
+          <p class="section-description">View, search, filter, and cancel your scheduled appointments.</p>
+        </div>
+
+        <div class="header-tools">
+          <button id="addSampleDataBtn" class="btn btn-outline btn-sm" title="Add 2 sample appointments for testing">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="16"></line>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            Load Sample Data
+          </button>
+          <button id="clearAllBookingsBtn" class="btn btn-outline-danger btn-sm" title="Clear all local appointments">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3 6 5 6 21 6"></polyline>
+              <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+            </svg>
+            Clear All
+          </button>
+        </div>
+      </div>
+
+      <!-- Controls: Search, Filter & Sort Bar -->
+      <div class="controls-bar">
+        <!-- Search Input -->
+        <div class="search-input-wrapper">
+          <svg class="search-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-control" 
+            placeholder="Search by name, email, or Booking ID..."
+            aria-label="Search appointments"
+          >
+          <button id="clearSearchBtn" class="search-clear-btn hidden" aria-label="Clear search">&times;</button>
+        </div>
+
+        <!-- Filter Buttons: All, Upcoming, Past -->
+        <div class="filter-tabs" role="tablist">
+          <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="filter-tab" data-filter="upcoming" role="tab" aria-selected="false">Upcoming</button>
+          <button class="filter-tab" data-filter="past" role="tab" aria-selected="false">Past</button>
+        </div>
+
+        <!-- Filter by Service Dropdown -->
+        <div class="filter-select-wrapper">
+          <select id="serviceFilter" class="filter-select" aria-label="Filter by service">
+            <option value="all">All Services</option>
+            <option value="General Consultation">General Consultation</option>
+            <option value="Dental Check-up">Dental Check-up</option>
+            <option value="Health Consultation">Health Consultation</option>
+            <option value="Personal Meeting">Personal Meeting</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <!-- Sort Dropdown -->
+        <div class="sort-select-wrapper">
+          <select id="sortOrder" class="filter-select" aria-label="Sort order">
+            <option value="date-asc">Date: Soonest First</option>
+            <option value="date-desc">Date: Latest First</option>
+            <option value="created-desc">Recently Booked</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Appointment Cards Container -->
+      <div id="appointmentsContainer" class="appointments-grid" aria-live="polite">
+        <!-- Filled dynamically by script.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div id="emptyAppointmentsState" class="empty-state hidden">
+        <div class="empty-state-icon">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="4" ry="4"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+            <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"></path>
+          </svg>
+        </div>
+        <h3 class="empty-state-title">No appointments found</h3>
+        <p class="empty-state-text" id="emptyStateMessage">You haven't booked any appointments yet. Choose your preferred service and lock in your slot!</p>
+        <a href="#bookingSection" class="btn btn-primary btn-md">Book Your First Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cancellation Confirmation Modal -->
+  <div id="cancelModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cancelModalTitle">
+    <div class="modal-card">
+      <div class="modal-icon warning">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </div>
+      <h3 id="cancelModalTitle" class="modal-title">Cancel Appointment?</h3>
+      <p class="modal-text">
+        Are you sure you want to cancel booking <strong id="cancelModalBookingId">#APT-XXXX</strong>? 
+        Once cancelled, this time slot will instantly become available for other clients.
+      </p>
+
+      <div class="modal-details-card" id="cancelModalDetails">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="abortCancelBtn" class="btn btn-outline btn-md">Keep Appointment</button>
+        <button type="button" id="confirmCancelBtn" class="btn btn-danger btn-md">Yes, Cancel Slot</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Booking Success Receipt Modal -->
+  <div id="successModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="successModalTitle">
+    <div class="modal-card success-card">
+      <div class="modal-icon success">
+        <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+      </div>
+      <h3 id="successModalTitle" class="modal-title">Booking Confirmed!</h3>
+      <p class="modal-text">Your appointment has been successfully booked and saved to your calendar.</p>
+
+      <div class="receipt-box" id="successReceiptDetails">
+        <!-- Injected by script.js -->
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="viewBookingsBtn" class="btn btn-primary btn-md">View in My Appointments</button>
+        <button type="button" id="closeSuccessModalBtn" class="btn btn-outline btn-md">Book Another</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+      <div class="footer-brand">
+        <div class="brand-logo footer-logo">
+          <div class="logo-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2">
+              <rect x="3" y="4" width="18" height="18" rx="4" ry="4"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <span class="brand-name">Appointly</span>
+        </div>
+        <p class="footer-tagline">“Your Time, Your Choice.”</p>
+        <p class="footer-description">A lightweight, modern, client-side appointment scheduling system built with vanilla web technologies.</p>
+      </div>
+
+      <div class="footer-nav-col">
+        <h4 class="footer-heading">Quick Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#bookingSection">Book Appointment</a></li>
+          <li><a href="#appointmentsSection">My Appointments</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-project-info">
+        <h4 class="footer-heading">Project Highlights</h4>
+        <ul class="footer-feature-list">
+          <li>✓ Duplicate Booking Prevention</li>
+          <li>✓ Past Date & Past Time Guard</li>
+          <li>✓ 10-Digit Phone & Email Validation</li>
+          <li>✓ LocalStorage Persistence</li>
+          <li>✓ Responsive Desktop & Mobile UI</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; <span id="currentYear">2026</span> Appointly. Designed for College Mini-Project Demonstration.</p>
+        <p class="footer-storage-note">Data saved via browser LocalStorage. Client-side demonstration.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
